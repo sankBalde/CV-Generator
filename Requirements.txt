@@ -1,0 +1,4 @@
+gradio
+transformers
+pdfkit
+jinja2

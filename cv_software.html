@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - {{ name }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            font-size: 32px;
+            margin: 0;
+        }
+        .header a {
+            color: #000;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .section h2 {
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+        .experience, .project, .education {
+            margin-bottom: 20px;
+        }
+        .experience h3, .project h3 {
+            font-size: 20px;
+            margin: 0;
+        }
+        .experience .location-date, .project .tech, .education .degree {
+            font-style: italic;
+            font-size: 14px;
+            color: #555;
+        }
+        ul {
+            margin: 10px 0 0 20px;
+        }
+        ul li {
+            margin-bottom: 5px;
+        }
+        .skills {
+            font-size: 16px;
+        }
+        .skills span {
+            display: inline-block;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>{{ name }}</h1>
+            <a href="{{ website }}">{{ website }}</a>
+        </div>
+
+        <div class="section">
+            <h2>Contact Information</h2>
+            <p><strong>Email:</strong> {{ email }}</p>
+            <p><strong>Phone:</strong> {{ phone }}</p>
+            <p><strong>Address:</strong> {{ address }}</p>
+        </div>
+
+        <div class="section">
+            <h2>Profile</h2>
+            <p>{{ profile }}</p>
+        </div>
+
+        <div class="section">
+            <h2>Professional Experience</h2>
+            {% for job in experiences %}
+                <div class="experience">
+                    <h3>{{ job.title }} - {{ job.company }}</h3>
+                    <div class="location-date">{{ job.location }} | {{ job.start_date }} - {{ job.end_date }}</div>
+                    <ul>
+                        {% for duty in job.duties %}
+                            <li>{{ duty }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="section">
+            <h2>Projects</h2>
+            {% for project in projects %}
+                <div class="project">
+                    <h3>{{ project.title }} ({{ project.tech }})</h3>
+                    <div class="tech">{{ project.description }}</div>
+                    <ul>
+                        {% for detail in project.details %}
+                            <li>{{ detail }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="section">
+            <h2>Skills</h2>
+            <div class="skills">
+                {% for skill in skills %}
+                    <span>{{ skill }}</span>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Education</h2>
+            {% for edu in education %}
+                <div class="education">
+                    <h3>{{ edu.institution }}</h3>
+                    <div class="degree">{{ edu.degree }}</div>
+                    <div class="location-date">{{ edu.location }} | {{ edu.date }}</div>
+                    <p>Coursework: {{ edu.coursework }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
