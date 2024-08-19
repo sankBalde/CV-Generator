@@ -1,4 +1,4 @@
 gradio
-transformers
+langchain-ollama
 pdfkit
 jinja2
